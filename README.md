@@ -29,6 +29,9 @@ So in very basic terms you would upload to http://127.0.0.1:3000/upload
 
 And retrieve them from http://127.0.0.1:3000/uploads/delete-this.txt being delete-this.txt your stored file.
 
+## Disadvantages
+As this is working as a discord-webhook like replica, we are not able to use Bearers or other kind-of tokens to disallow malicious behaviour (running out-of-space, flood with fake images., etc.), however I recommend you to log the requests in order to grab this behaviour. 
+
 ## OPTIONAL (setup with nginx and cloudflare):
 
 If you need help setting up nginx and cloudflare, i will link you one guide:
