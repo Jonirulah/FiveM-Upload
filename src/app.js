@@ -31,18 +31,20 @@ if (Config.logging) {
 	} catch {
 		Utils.logInfo("Couldn't enable Winston for logging");
 	}
-}
+};
 
 if (Config.ssl) {
 	try {
-		const privateKey = fs.readFileSync(Config.ssl.keyPath, 'utf8');
-		const certificate = fs.readFileSync(Config.ssl.certPath, 'utf8');
+		const https = require('https');
+		const privateKey = fs.readFileSync(Config.sslPrivateKey, 'utf8');
+		const certificate = fs.readFileSync(Config.sslCertificate, 'utf8');
 		const credentials = { key: privateKey, cert: certificate };
 		const httpsServer = https.createServer(credentials, app);
-		httpsServer.listen(Config.port, () => {
+		httpsServer.listen(Config.sslPort, () => {
 			Utils.logInfo(`HTTPS Server is listening on ${Config.endPoint}`);
 		});
-	} catch {
+	} catch (e) {
+		console.log(e)
 		Utils.logInfo(`HTTPS couldn't be enabled`);
 	}
 };
