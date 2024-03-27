@@ -4,8 +4,6 @@ Created for storing media in our server as discord recent changes to attachments
 - Uploads media/images/audio to the cache server and get them deleted after time.
 - Works like a webhook so there is no need for reworking old webhook methods.
 
-No SSL is provided within this server (very easy to implement) due that we use it with nginx proxy to Cloudflare as it is more secure in that way.
-
 You can use pm2 or nodemon in case your server crashes somehow and auto-restart it.
 
 40MB is the limit for files even tho you can extend this limit for file extensions.
