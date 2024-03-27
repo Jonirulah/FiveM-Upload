@@ -8,6 +8,8 @@ class Config {
         this.ssl = false; // Enable HTTPS for our server (not using Cloudflare/Nginx/Apache) or having (Cloudflare in Full enc mode)
         this.sslPrivateKey = ''; // HTTPS key
         this.sslCertificate = ''; // HTTPS cert
+
+        this.citizenFXonly = true; // Accept only requests matching CitizenFX user-agent
     }
 }
 

@@ -76,10 +76,11 @@ app.use((req, res, next) => {
     const userAgent = req.headers['user-agent'];
     const route = req.originalUrl;
     const isHttps = req.secure ? 'HTTPS' : 'HTTP';
-	const citizenFX = userAgent.includes('CitizenFX')
-	Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | isCitizen:${citizenFX}`);
-	if (citizenFX) {next()} else {return res.status(444).send()};
-
+	if (global.citizenFXonly) {
+		const citizenFX = userAgent.includes('CitizenFX')
+		Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | isCitizen:${citizenFX}`);
+		if (citizenFX) {next()} else {return res.status(444).send()};
+	} else { next() };
 });
 
 // Do not send anything on GET "/"
