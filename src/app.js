@@ -23,7 +23,7 @@ if (Config.logging) {
 
 			transports: [
 				new winston.transports.File({
-				filename: '../logs/log.log',
+				filename: './logs/log.log',
 				}),
 			new winston.transports.Console()],
 		});
@@ -80,7 +80,7 @@ app.use((req, res, next) => {
     const isHttps = req.secure ? 'HTTPS' : 'HTTP';
 	if (Config.citizenFXonly) {
 		const citizenFX = userAgent.includes('CitizenFX')
-		Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | isCitizen:${citizenFX}`);
+		Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | IP:${Utils.clientIP(req)} | isCitizen:${citizenFX}`);
 		if (citizenFX) {next()} else {return res.status(444).send()};
 	} else { next() };
 });
