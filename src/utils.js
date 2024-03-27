@@ -1,6 +1,7 @@
 class Utils {
     clientIP(request) {
-        try { return req.headers['CF-Connecting-IP'] || request.connection.remoteAddress || request.ip}
+        console.log(request.headers)
+        try { return (request.headers['cf-connecting-ip'] || request.headers['x-forwarded-for'] || request.ip)}
         catch { return `Couldn't grab Client IP`}
     };
 
