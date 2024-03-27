@@ -78,7 +78,7 @@ app.use((req, res, next) => {
     const userAgent = req.headers['user-agent'];
     const route = req.originalUrl;
     const isHttps = req.secure ? 'HTTPS' : 'HTTP';
-	if (global.citizenFXonly) {
+	if (Config.citizenFXonly) {
 		const citizenFX = userAgent.includes('CitizenFX')
 		Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | isCitizen:${citizenFX}`);
 		if (citizenFX) {next()} else {return res.status(444).send()};
