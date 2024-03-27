@@ -3,6 +3,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const DailyRotateFile = require('winston-daily-rotate-file');
+
 const app = express();
 
 // cleaning sub-process
@@ -17,15 +19,9 @@ if (Config.logging) {
 	try {
 		const winston = require("winston");
 		const { combine, timestamp, json } = winston.format;
-
 		global.logger = winston.createLogger({
 			format: combine(timestamp(), json()),
-
-			transports: [
-				new winston.transports.File({
-				filename: './logs/log.log',
-				}),
-			new winston.transports.Console()],
+			transports: [new DailyRotateFile({ filename: 'logs/combined-%DATE%.log', datePattern: 'YYYY-MM-DD', maxFiles: '24h', maxSize: '50m' }), new winston.transports.Console()],
 		});
 		Utils.logInfo('Enabled Winston for Logging');
 	} catch {
