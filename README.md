@@ -1,4 +1,4 @@
-### FiveM-Media-Uploader
+# FiveM-Media-Uploader
 Created for storing media in our server as discord recent changes to attachments storage policy affects FiveM servers. I have seen other servers using solutions like Imgur and FiveManage (managed) which for me arent reliable enough.
 
 - Uploads media/images/audio to the cache server and get them deleted after time.
