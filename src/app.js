@@ -81,6 +81,7 @@ app.use((req, res, next) => {
 	if (Config.citizenFXonly) {
 		const citizenFX = userAgent.includes('CitizenFX')
 		Utils.logInfo(`${req.method} ${route} from ${userAgent} over ${isHttps} | IP:${Utils.clientIP(req)} | isCitizen:${citizenFX}`);
+		Utils.logInfo(req.headers)
 		if (citizenFX) {next()} else {return res.status(444).send()};
 	} else { next() };
 });

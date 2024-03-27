@@ -1,6 +1,5 @@
 class Utils {
     clientIP(request) {
-        Utils.logInfo(request.headers)
         try { return (request.headers['cf-connecting-ip'] || request.headers['x-forwarded-for'] || request.ip)}
         catch { return `Couldn't grab Client IP`}
     };
